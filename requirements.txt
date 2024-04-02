@@ -1,0 +1,7 @@
+fastapi
+metaflow
+numpy
+pandas
+scikit-learn
+sentence-transformers
+uvicorn
