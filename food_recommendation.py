@@ -12,7 +12,7 @@ class FoodRecommendationPipeline(FlowSpec):
     # Define parameters if needed
     DATA_FILE = Parameter(
         "data_file",
-        "https://raw.githubusercontent.com/Swifty-The-Delivery-Ecosystem/Food-Recommendation/main/indian_food.csv",
+        "https://raw.githubusercontent.com/Swifty-The-Delivery-Ecosystem/Food-Recommendation/master/indian_food.csv",
         help="Path to the food data CSV file",
     )
 
