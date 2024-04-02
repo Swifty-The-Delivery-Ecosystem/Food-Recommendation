@@ -11,10 +11,10 @@ recipe_embeddings = np.load("recipe_embeddings.npy")
 similarity_matrix = np.load("similarity_matrix.npy")
 
 def get_index(recipe_name):
-    return df[df.recipe_name == recipe_name].index.values[0]
+    return df[df.name == recipe_name].index.values[0]
 
 def get_recipe(index):
-    return df.iloc[index]["recipe_name"]
+    return df.iloc[index]["name"]
 
 def get_recipe_recommendation(recipe_name):
     idx = get_index(recipe_name)
