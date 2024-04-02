@@ -12,7 +12,7 @@ class FoodRecommendationPipeline(FlowSpec):
     # Define parameters if needed
     DATA_FILE = Parameter(
         "data_file",
-        "/home/aditya/Downloads/indian_food.csv",
+        "https://raw.githubusercontent.com/Swifty-The-Delivery-Ecosystem/Food-Recommendation/main/indian_food.csv",
         help="Path to the food data CSV file",
     )
 
@@ -83,29 +83,20 @@ class FoodRecommendationPipeline(FlowSpec):
 
         plt.show()
 
-        # Use SentenceTransformer to generate embeddings for recipe ingredients
+         # Use SentenceTransformer to generate embeddings for recipe ingredients
         bert_model = SentenceTransformer("bert-base-nli-mean-tokens")
-        self.recipe_embeddings = bert_model.encode(self.data["ingredients"]).tolist()
-        self.similarity_matrix = cosine_similarity(self.recipe_embeddings)
+        recipe_embeddings = bert_model.encode(self.data["ingredients"]).tolist()
+        similarity_matrix = cosine_similarity(recipe_embeddings)
+
+        # Save embeddings and similarity matrix to the repository
+        embeddings_file = os.path.join(os.getcwd(), "recipe_embeddings.npy")
+        similarity_matrix_file = os.path.join(os.getcwd(), "similarity_matrix.npy")
+        np.save(embeddings_file, recipe_embeddings)
+        np.save(similarity_matrix_file, similarity_matrix)
 
         # Proceed to final recommendation step
-        self.next(self.recommend)
-
-    @step
-    def recommend(self):
-        # Generate recommendations based on similarity matrix
-        # For simplicity, let's just print out the top similar recipes for each recipe
-        for idx, recipe in enumerate(self.data["recipe_name"]):
-            similar_recipes_idx = np.argsort(self.similarity_matrix[idx])[::-1][
-                1:6
-            ]  # Exclude self
-            similar_recipes = self.data.iloc[similar_recipes_idx][
-                "recipe_name"
-            ].tolist()
-            print(f"For recipe '{recipe}', similar recipes are: {similar_recipes}")
-
-        # Proceed to end step
         self.next(self.end)
+
 
     @step
     def end(self):
