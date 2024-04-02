@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
+import os
 from metaflow import FlowSpec, Parameter, step
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
