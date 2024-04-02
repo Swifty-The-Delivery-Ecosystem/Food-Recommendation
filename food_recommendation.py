@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
+import os
 from metaflow import FlowSpec, Parameter, step
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -12,7 +13,7 @@ class FoodRecommendationPipeline(FlowSpec):
     # Define parameters if needed
     DATA_FILE = Parameter(
         "data_file",
-        "https://raw.githubusercontent.com/Swifty-The-Delivery-Ecosystem/Food-Recommendation/main/indian_food.csv",
+        "https://raw.githubusercontent.com/Swifty-The-Delivery-Ecosystem/Food-Recommendation/master/indian_food.csv",
         help="Path to the food data CSV file",
     )
 
