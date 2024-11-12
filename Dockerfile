@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . /app
 
-RUN pip install --no-cache-dir metaflow pandas scikit-learn sentence-transformers fastapi uvicorn
+RUN pip install --no-cache-dir metaflow pandas scikit-learn sentence-transformers fastapi uvicorn groq python-dotenv
 
 EXPOSE 8080
 

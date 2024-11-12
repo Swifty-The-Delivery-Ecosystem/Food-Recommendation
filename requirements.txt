@@ -7,3 +7,5 @@ sentence-transformers
 uvicorn
 seaborn
 matplotlib
+python-dotenv
+groq

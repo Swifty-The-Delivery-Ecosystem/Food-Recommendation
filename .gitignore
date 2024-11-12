@@ -1,2 +1,3 @@
 .metaflow/
 __pycache__/
+.env
